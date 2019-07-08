@@ -1,0 +1,38 @@
+#!/bin/bash
+#############################################################################
+bashcat_usage () {
+printf "%s" "\
+usage: bashcat [options] FILES...
+
+  Concatenate and print files.
+
+options:
+
+  -h  prints help
+  -u  unbuffer output
+
+"
+}
+opts=""
+args=""
+while [ $OPTIND -le $# ]
+do
+  if getopts "hu" option
+  then
+    case "$option" in
+      (h) bashcat_usage
+          exit 0 ;;
+      (u) opts="$opts -u" ;;
+      (*) bashcat_usage | head -n 1 >&2
+          exit 2 ;;
+    esac
+  else
+    args="$args \"\${$OPTIND}\""
+    OPTIND=$(($OPTIND + 1))
+  fi
+done
+eval set -- "$args"
+
+#############################################################################
+
+cat $opts "$@"
