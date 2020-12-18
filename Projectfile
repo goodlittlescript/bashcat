@@ -10,7 +10,7 @@ images () {
 }
 
 up () {
-  docker-compose up --detach --no-build shell
+  docker-compose up --detach shell
 }
 
 shell () {
@@ -26,7 +26,7 @@ clean () {
 }
 
 #
-# utility  
+# utility
 #
 
 list () {
