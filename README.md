@@ -18,7 +18,7 @@ These options control how `bashcat` operates.
 
 ## EXAMPLES
 
-```bash
+```shell
 bashcat > file <<DOC
 content
 DOC
@@ -33,29 +33,18 @@ Add `bashcat` to your PATH (or execute it directly).
 
 ## DEVELOPMENT
 
-Clone repo, build images.
+Clone repo, get a shell container.
 
-```bash
-make images
+```shell
+./Projectfile shell
 ```
 
-Run the utility, test, fix, and lint.
+Do development in the shell.
 
-```bash
-make run <<<"success"
-make test fix lint
-```
+```shell
+# run the utility
+./bin/bashcat <<<"success"
 
-Get a shell for development.
-
-```bash
-make shell
-# ./bin/bashcat <<<"success"
-# ./test/suite
-```
-
-Package.
-
-```bash
-make artifacts
+# run tests
+./test/suite
 ```

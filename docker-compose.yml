@@ -7,5 +7,5 @@ services:
       context: .
     command: [/bin/sleep, "86400"]
     volumes:
-    - .:/app
-    - ./tmp/home:/home/appuser
+    - $PWD:/app
+    - $PWD/tmp/home:/home/appuser
