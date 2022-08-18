@@ -3,7 +3,6 @@ version: '3.6'
 services:
   shell:
     build:
-      network: host
       context: .
     command: [/bin/sleep, "86400"]
     volumes:
