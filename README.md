@@ -29,7 +29,7 @@ bashcat file
 
 ## INSTALLATION
 
-Add `bashcat` to your PATH (or execute it directly).
+Add `bashcat` to your PATH (or execute it directly). There are no additional dependencies.
 
 ## DEVELOPMENT
 
