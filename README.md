@@ -33,7 +33,7 @@ Add `bashcat` to your PATH (or execute it directly).
 
 ## DEVELOPMENT
 
-Clone repo, get a shell container.
+Get a shell container. All you need is docker compose.
 
 ```shell
 ./Projectfile shell
