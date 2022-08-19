@@ -7,7 +7,8 @@ bashcat(1) -- POSIX cat in BASH
 
 ## DESCRIPTION
 
-The `cat` utility in bash, per the [POSIX specification](http://pubs.opengroup.org/onlinepubs/000095399/utilities/cat.html).
+The `cat` utility in bash, per the [POSIX specification](http://pubs.opengroup.org/onlinepubs/000095399/utilities/cat.html), plus logging. Intended to be used as a single-file, no-dependency template for writing shell scripts.
+
 
 ## OPTIONS
 
@@ -15,6 +16,14 @@ These options control how `bashcat` operates.
 
 * `-u`:
   Unbuffer output.
+
+* `-v`:
+  Verbose output. Can be used multiple times.
+
+## ENVIRONMENT
+
+* `LOG_LEVEL`:
+  Sets the log level using the standard log level integers (ex 'INFO'). Overrides `-v`.
 
 ## EXAMPLES
 

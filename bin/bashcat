@@ -10,19 +10,22 @@ options:
 
   -h  prints help
   -u  unbuffer output
+  -v  verbose output
 
 "
 }
-opts=""
 args=""
+opts=""
+log_level=2
 while [ $OPTIND -le $# ]
 do
-  if getopts "hu" option
+  if getopts "huv" option
   then
     case "$option" in
       (h) bashcat_usage
           exit 0 ;;
       (u) opts="$opts -u" ;;
+      (v) log_level=$(($log_level - 1)) ;;
       (*) bashcat_usage | head -n 1 >&2
           exit 2 ;;
     esac
@@ -33,6 +36,20 @@ do
 done
 eval set -- "$args"
 
+LOG_LEVEL=${LOG_LEVEL:-$log_level}
+#############################################################################
+log () {
+  printf "[%s] %s %s - %s\n" "$(date -u +"%Y-%m-%dT%H:%M:%S+0000")" "$1" "$(basename "$0")" "$2" >&2
+}
+case "$LOG_LEVEL" in
+  (ERROR) LOG_LEVEL=3;;
+  (WARN)  LOG_LEVEL=2;;
+  (INFO)  LOG_LEVEL=1;;
+esac
+log_info ()  { if [ "$LOG_LEVEL" -le 1 ]; then log INFO "$@";  fi; }
+log_warn ()  { if [ "$LOG_LEVEL" -le 2 ]; then log WARN "$@";  fi; }
+log_error () { if [ "$LOG_LEVEL" -le 3 ]; then log ERROR "$@"; fi; }
 #############################################################################
 
+log_info "files: $@"
 cat $opts "$@"
