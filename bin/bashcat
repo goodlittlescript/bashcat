@@ -1,6 +1,6 @@
 #!/bin/bash
 #############################################################################
-bashcat_usage () {
+usage () {
 printf "%s" "\
 usage: bashcat [options] FILES...
 
@@ -22,11 +22,11 @@ do
   if getopts "huv" option
   then
     case "$option" in
-      (h) bashcat_usage
+      (h) usage
           exit 0 ;;
       (u) opts="$opts -u" ;;
       (v) log_level=$(($log_level - 1)) ;;
-      (*) bashcat_usage | head -n 1 >&2
+      (*) usage | head -n 1 >&2
           exit 2 ;;
     esac
   else
